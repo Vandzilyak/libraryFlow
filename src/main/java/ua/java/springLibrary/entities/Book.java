@@ -3,26 +3,69 @@ package ua.java.springLibrary.entities;
 import java.util.Arrays;
 
 public class Book {
-    private long id;
+    private Long id;
+    private Author author;
+    private Genre genre;
+    private Publisher publisher;
     private String name;
     private byte[] content;
-    private int pageCount;
+    private Integer pageCount;
     private String isbn;
-    private long genreId;
-    private long authorId;
-    private int publishYear;
-    private long publisherId;
+    private Integer publishYear;
     private byte[] image;
     private String descr;
     private Integer rating;
     private Long voteCount;
 
-    public long getId() {
+    public Book() {
+    }
+
+    public Book(Long id, Author author, Genre genre, Publisher publisher, String name, byte[] content, Integer pageCount, String isbn, Integer publishYear, byte[] image, String descr, Integer rating, Long voteCount) {
+        this.id = id;
+        this.author = author;
+        this.genre = genre;
+        this.publisher = publisher;
+        this.name = name;
+        this.content = content;
+        this.pageCount = pageCount;
+        this.isbn = isbn;
+        this.publishYear = publishYear;
+        this.image = image;
+        this.descr = descr;
+        this.rating = rating;
+        this.voteCount = voteCount;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
     }
 
     public String getName() {
@@ -41,11 +84,11 @@ public class Book {
         this.content = content;
     }
 
-    public int getPageCount() {
+    public Integer getPageCount() {
         return pageCount;
     }
 
-    public void setPageCount(int pageCount) {
+    public void setPageCount(Integer pageCount) {
         this.pageCount = pageCount;
     }
 
@@ -57,36 +100,12 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public long getGenreId() {
-        return genreId;
-    }
-
-    public void setGenreId(long genreId) {
-        this.genreId = genreId;
-    }
-
-    public long getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(long authorId) {
-        this.authorId = authorId;
-    }
-
-    public int getPublishYear() {
+    public Integer getPublishYear() {
         return publishYear;
     }
 
-    public void setPublishYear(int publishYear) {
+    public void setPublishYear(Integer publishYear) {
         this.publishYear = publishYear;
-    }
-
-    public long getPublisherId() {
-        return publisherId;
-    }
-
-    public void setPublisherId(long publisherId) {
-        this.publisherId = publisherId;
     }
 
     public byte[] getImage() {
@@ -128,17 +147,17 @@ public class Book {
 
         Book book = (Book) o;
 
-        if (authorId != book.authorId) return false;
-        if (genreId != book.genreId) return false;
-        if (id != book.id) return false;
-        if (pageCount != book.pageCount) return false;
-        if (publishYear != book.publishYear) return false;
-        if (publisherId != book.publisherId) return false;
+        if (author != null ? !author.equals(book.author) : book.author != null) return false;
         if (!Arrays.equals(content, book.content)) return false;
         if (descr != null ? !descr.equals(book.descr) : book.descr != null) return false;
+        if (genre != null ? !genre.equals(book.genre) : book.genre != null) return false;
+        if (id != null ? !id.equals(book.id) : book.id != null) return false;
         if (!Arrays.equals(image, book.image)) return false;
         if (isbn != null ? !isbn.equals(book.isbn) : book.isbn != null) return false;
         if (name != null ? !name.equals(book.name) : book.name != null) return false;
+        if (pageCount != null ? !pageCount.equals(book.pageCount) : book.pageCount != null) return false;
+        if (publishYear != null ? !publishYear.equals(book.publishYear) : book.publishYear != null) return false;
+        if (publisher != null ? !publisher.equals(book.publisher) : book.publisher != null) return false;
         if (rating != null ? !rating.equals(book.rating) : book.rating != null) return false;
         if (voteCount != null ? !voteCount.equals(book.voteCount) : book.voteCount != null) return false;
 
@@ -147,15 +166,15 @@ public class Book {
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (author != null ? author.hashCode() : 0);
+        result = 31 * result + (genre != null ? genre.hashCode() : 0);
+        result = 31 * result + (publisher != null ? publisher.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (content != null ? Arrays.hashCode(content) : 0);
-        result = 31 * result + pageCount;
+        result = 31 * result + (pageCount != null ? pageCount.hashCode() : 0);
         result = 31 * result + (isbn != null ? isbn.hashCode() : 0);
-        result = 31 * result + (int) (genreId ^ (genreId >>> 32));
-        result = 31 * result + (int) (authorId ^ (authorId >>> 32));
-        result = 31 * result + publishYear;
-        result = 31 * result + (int) (publisherId ^ (publisherId >>> 32));
+        result = 31 * result + (publishYear != null ? publishYear.hashCode() : 0);
         result = 31 * result + (image != null ? Arrays.hashCode(image) : 0);
         result = 31 * result + (descr != null ? descr.hashCode() : 0);
         result = 31 * result + (rating != null ? rating.hashCode() : 0);
